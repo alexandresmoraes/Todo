@@ -42,13 +42,13 @@ namespace Todo.Domain.Commands.Handlers
     {
       cancellationToken.ThrowIfCancellationRequested();
 
-      var result = await _authService.ChangePasswordAsync(request.Username, request.CurrentPassword, request.Password, cancellationToken);
+      var result = await _authService.ChangePasswordAsync(_authService.GetUserName(), request.CurrentPassword, request.Password, cancellationToken);
 
       if (result.IsValid)
       {
         return Result.Ok(new ChangeAccountPasswordResponse
         {
-          Username = request.Username
+          Username = _authService.GetUserName()
         });
       }
 
