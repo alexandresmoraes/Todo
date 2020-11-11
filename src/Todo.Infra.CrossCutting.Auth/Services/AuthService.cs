@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Todo.Domain.Auth;
 using Todo.Domain.Shared;
+using Todo.Domain.Shared.Settings;
 using Todo.Infra.CrossCutting.Auth.Entities;
 
 namespace Todo.Infra.CrossCutting.Auth.Services
@@ -11,10 +13,12 @@ namespace Todo.Infra.CrossCutting.Auth.Services
   public class AuthService : IAuthService
   {
     private readonly UserManager<User> _userManager;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public AuthService(UserManager<User> userManager)
+    public AuthService(UserManager<User> userManager, IHttpContextAccessor httpContextAccessor)
     {
       _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+      _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
     }
 
     public async Task<Result> ChangePasswordAsync(string username, string currentPassword, string password, CancellationToken cancellationToken = default)
@@ -29,7 +33,19 @@ namespace Todo.Infra.CrossCutting.Auth.Services
         result.AddError(identityError.Code, identityError.Description);
 
       return result;
-    }    
+    }
+
+    public async Task<bool> CheckPasswordAsync(string username, string password, CancellationToken cancellationToken = default)
+    {
+      cancellationToken.ThrowIfCancellationRequested();
+
+      var user = await GetUserByNameOrEmailAsync(username, cancellationToken);
+      if (user != null)
+      {
+        return await _userManager.CheckPasswordAsync(user, password);
+      }
+      return false;
+    }
 
     public async Task<Result> CreateUserAsync(string firstname, string lastname, string email, string username, string password, CancellationToken cancellationToken = default)
     {
@@ -47,6 +63,11 @@ namespace Todo.Infra.CrossCutting.Auth.Services
         result.AddError(identityError.Code, identityError.Description);
 
       return result;
+    }
+
+    public string GetUserName()
+    {
+      return _httpContextAccessor.HttpContext.User.FindFirst(TodoClaimTypes.NameIdentifier).Value;
     }
 
     private async Task<User> GetUserByNameOrEmailAsync(string username, CancellationToken cancellationToken = default)

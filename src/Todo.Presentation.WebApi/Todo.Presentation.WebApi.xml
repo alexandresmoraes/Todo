@@ -14,5 +14,20 @@
             Alterar a senha do usuário
             </summary>    
         </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.AuthController.Get">
+            <summary>
+            Endpoint para verificar se o usuário está autorizado
+            </summary>
+        </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.AuthController.Login(Todo.Domain.Commands.Requests.Auth.LoginCommand,MediatR.IMediator,System.Threading.CancellationToken)">
+            <summary>
+            Validação de usuário e senha na geração de token
+            </summary>
+        </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.AuthController.RefreshToken(Todo.Domain.Commands.Requests.Auth.RefreshTokenCommand,MediatR.IMediator,System.Threading.CancellationToken)">
+            <summary>
+            Geração de token baseado no refresh token
+            </summary>
+        </member>
     </members>
 </doc>

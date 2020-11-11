@@ -13,11 +13,14 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Todo.Application\Todo.Application.csproj" />
+    <ProjectReference Include="..\Todo.Infra.CrossCutting.Mapper\Todo.Infra.CrossCutting.Mapper.csproj" />
     <ProjectReference Include="..\Todo.Infra.CrossCutting.Swagger\Todo.Infra.CrossCutting.Swagger.csproj" />
     <ProjectReference Include="..\Todo.Infra.Data.NHibernate\Todo.Infra.Data.NHibernate.csproj" />
   </ItemGroup>

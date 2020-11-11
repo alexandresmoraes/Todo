@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Infra.CrossCutting.Aut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Infra.Data.NHibernate", "src\Todo.Infra.Data.NHibernate\Todo.Infra.Data.NHibernate.csproj", "{F153203D-6AA9-4B9A-9C06-1CD6309AB30F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Infra.CrossCutting.Mapper", "src\Todo.Infra.CrossCutting.Mapper\Todo.Infra.CrossCutting.Mapper.csproj", "{92A2F50C-59D1-4895-9141-CB95DEB4403E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F153203D-6AA9-4B9A-9C06-1CD6309AB30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F153203D-6AA9-4B9A-9C06-1CD6309AB30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F153203D-6AA9-4B9A-9C06-1CD6309AB30F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A2F50C-59D1-4895-9141-CB95DEB4403E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A2F50C-59D1-4895-9141-CB95DEB4403E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A2F50C-59D1-4895-9141-CB95DEB4403E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A2F50C-59D1-4895-9141-CB95DEB4403E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{8BB14A89-74B4-43A3-B80E-30024DBF0F25} = {57539632-E9A4-483F-A3EB-A67E91D2F48B}
 		{77900E6A-93A3-4969-8442-68A22F64BB18} = {57539632-E9A4-483F-A3EB-A67E91D2F48B}
 		{F153203D-6AA9-4B9A-9C06-1CD6309AB30F} = {87369BB8-512B-4150-8A89-EBBC37E3202B}
+		{92A2F50C-59D1-4895-9141-CB95DEB4403E} = {57539632-E9A4-483F-A3EB-A67E91D2F48B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FB469C9-C95B-4647-93D2-6917F4B22CFC}
