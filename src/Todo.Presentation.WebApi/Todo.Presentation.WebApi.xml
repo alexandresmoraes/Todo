@@ -4,5 +4,15 @@
         <name>Todo.Presentation.WebApi</name>
     </assembly>
     <members>
+        <member name="M:Todo.Presentation.WebApi.Controllers.AccountController.Post(Todo.Domain.Commands.Requests.Account.CreateAccountCommand,MediatR.IMediator,System.Threading.CancellationToken)">
+            <summary>
+            Criação de novos usuários
+            </summary>
+        </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.AccountController.Put(Todo.Domain.Commands.Requests.Account.ChangeAccountPasswordCommand,MediatR.IMediator,System.Threading.CancellationToken)">
+            <summary>
+            Alterar a senha do usuário
+            </summary>    
+        </member>
     </members>
 </doc>

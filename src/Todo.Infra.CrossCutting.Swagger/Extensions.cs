@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Todo.Infra.CrossCutting.Swagger
 {
-  public static class Config
+  public static class Extensions
   {
     private const string API_NAME = "Todo Api";
     private const string API_VERSION = "1.0.0.0";
