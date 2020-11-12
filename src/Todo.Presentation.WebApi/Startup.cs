@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Reflection;
+using Todo.Application.Mvc.Filters;
 using Todo.Domain.Commands.Handlers;
 using Todo.Infra.CrossCutting.Auth;
 using Todo.Infra.CrossCutting.Mapper;
@@ -61,6 +62,7 @@ namespace Todo.Presentation.WebApi
           jsonSerializer.SupportedMediaTypes.Add("application/json");
 
           opt.Filters.Add(new ProducesAttribute("application/json", "application/xml"));
+          opt.Filters.Add<ResultFilterAttribute>();
         })
         .ConfigureApiBehaviorOptions(opt =>
         {
@@ -76,18 +78,15 @@ namespace Todo.Presentation.WebApi
         app.UseDeveloperExceptionPage();
       }
 
-      app.UseSwagger();
-
-      app.UseHttpsRedirection();
-
-      app.UseRouting();
-
-      app.UseAuthorization();
-
-      app.UseEndpoints(endpoints =>
-      {
-        endpoints.MapControllers();
-      });
+      app.UseSwagger()
+        .UseHttpsRedirection()
+        .UseRouting()
+        .UseAuthentication()
+        .UseAuthorization()
+        .UseEndpoints(endpoints =>
+        {
+          endpoints.MapControllers();
+        });
     }
   }
 }

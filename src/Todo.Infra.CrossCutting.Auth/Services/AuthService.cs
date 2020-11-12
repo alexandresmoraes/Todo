@@ -65,10 +65,8 @@ namespace Todo.Infra.CrossCutting.Auth.Services
       return result;
     }
 
-    public string GetUserName()
-    {
-      return _httpContextAccessor.HttpContext.User.FindFirst(TodoClaimTypes.NameIdentifier).Value;
-    }
+    public string GetUserName() =>
+      _httpContextAccessor.HttpContext.User.FindFirst(TodoClaimTypes.NameIdentifier).Value;
 
     private async Task<User> GetUserByNameOrEmailAsync(string username, CancellationToken cancellationToken = default)
     {
