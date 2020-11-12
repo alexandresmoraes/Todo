@@ -42,13 +42,20 @@ namespace Todo.Domain.Commands.Handlers
     {
       cancellationToken.ThrowIfCancellationRequested();
 
-      var result = await _authService.ChangePasswordAsync(_authService.GetUserName(), request.CurrentPassword, request.Password, cancellationToken);
+      var username = _authService.GetUserName();
+
+      if (!await _authService.CheckPasswordAsync(username, request.CurrentPassword))
+      {
+        return Result.Fail<ChangeAccountPasswordResponse>("Senha atual não confere.");
+      }
+
+      var result = await _authService.ChangePasswordAsync(username, request.CurrentPassword, request.Password, cancellationToken);
 
       if (result.IsValid)
       {
         return Result.Ok(new ChangeAccountPasswordResponse
         {
-          Username = _authService.GetUserName()
+          Username = username
         });
       }
 

@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Reflection;
+using Todo.Application;
 using Todo.Application.Mvc.Filters;
 using Todo.Domain.Commands.Handlers;
 using Todo.Infra.CrossCutting.Auth;
@@ -40,12 +42,13 @@ namespace Todo.Presentation.WebApi
         .AddXmlSerializerFormatters();
 
       services
+        .ApplicationSetup()
         .AddNHibernate(_configuration.GetConnectionString("Default"))
         .AddAutoMapperr()
         .AddMediatR(Assembly.GetAssembly(typeof(AuthHandlers)))
         .AddAuthentication(_configuration)
         .AddCors()
-        .AddSwagger()
+        .AddSwagger()        
         .AddMvc(opt =>
         {
           opt.RespectBrowserAcceptHeader = true;
@@ -62,6 +65,7 @@ namespace Todo.Presentation.WebApi
           jsonSerializer.SupportedMediaTypes.Add("application/json");
 
           opt.Filters.Add(new ProducesAttribute("application/json", "application/xml"));
+          opt.Filters.Add(new AuthorizeFilter());
           opt.Filters.Add<ResultFilterAttribute>();
         })
         .ConfigureApiBehaviorOptions(opt =>
