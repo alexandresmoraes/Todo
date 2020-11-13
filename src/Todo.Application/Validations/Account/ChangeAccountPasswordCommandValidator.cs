@@ -13,6 +13,9 @@ namespace Todo.Application.Validations.Account
 
       RuleFor(x => x.Password)
         .NotEmpty().WithMessage("Senha nova do usuário não pode ser vazio.");
+
+      RuleFor(x => x)
+        .Must((x) => !x.Password.Equals(x.CurrentPassword)).WithMessage("A nova senha não pode ser igual a antiga.");
     }
   }
 }

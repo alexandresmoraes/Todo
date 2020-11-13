@@ -3,7 +3,9 @@ using FluentNHibernate.Cfg.Db;
 using Microsoft.Extensions.DependencyInjection;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
+using Todo.Domain.IUoW;
 using Todo.Infra.Data.NHibernate.Mapping.Auth;
+using Todo.Infra.Data.NHibernate.UoW;
 
 namespace Todo.Infra.Data.NHibernate
 {
@@ -28,6 +30,8 @@ namespace Todo.Infra.Data.NHibernate
 
       services.AddScoped(provider => provider.GetService<ISessionFactory>().OpenSession());
       services.AddScoped(provider => provider.GetService<ISessionFactory>().OpenStatelessSession());
+
+      services.AddScoped<IUnitOfWork, UnitOfWork>();      
 
       return services;
     }

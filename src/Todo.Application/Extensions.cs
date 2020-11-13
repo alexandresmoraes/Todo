@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Todo.Application.Pipeline;
@@ -21,6 +22,16 @@ namespace Todo.Application
       services.AddScoped<IValidator<ChangeAccountPasswordCommand>, ChangeAccountPasswordCommandValidator>();
 
       return services;
+    }
+
+    public static IMvcBuilder AddValidations(this IMvcBuilder builder)
+    {
+      builder.AddFluentValidation(options =>
+      {
+        options.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>();
+      });
+
+      return builder;
     }
   }
 }

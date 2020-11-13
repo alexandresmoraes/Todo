@@ -43,12 +43,12 @@ namespace Todo.Presentation.WebApi
 
       services
         .ApplicationSetup()
-        .AddNHibernate(_configuration.GetConnectionString("Default"))
         .AddAutoMapperr()
-        .AddMediatR(Assembly.GetAssembly(typeof(AuthHandlers)))
         .AddAuthentication(_configuration)
+        .AddNHibernate(_configuration.GetConnectionString("Default"))
+        .AddMediatR(Assembly.GetAssembly(typeof(AuthHandlers)))
         .AddCors()
-        .AddSwagger()        
+        .AddSwagger()
         .AddMvc(opt =>
         {
           opt.RespectBrowserAcceptHeader = true;
@@ -67,6 +67,7 @@ namespace Todo.Presentation.WebApi
           opt.Filters.Add(new ProducesAttribute("application/json", "application/xml"));
           opt.Filters.Add(new AuthorizeFilter());
           opt.Filters.Add<ResultFilterAttribute>();
+          opt.Filters.Add<WebTransactionAttribute>();
         })
         .ConfigureApiBehaviorOptions(opt =>
         {
@@ -83,11 +84,11 @@ namespace Todo.Presentation.WebApi
       }
 
       app.UseSwagger()
-        .UseHttpsRedirection()
-        .UseRouting()
-        .UseAuthentication()
-        .UseAuthorization()
-        .UseEndpoints(endpoints =>
+         .UseHttpsRedirection()
+         .UseRouting()
+         .UseAuthentication()
+         .UseAuthorization()
+         .UseEndpoints(endpoints =>
         {
           endpoints.MapControllers();
         });
