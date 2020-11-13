@@ -5,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Todo.Application.Pipeline;
 using Todo.Application.Validations.Account;
 using Todo.Application.Validations.Auth;
+using Todo.Application.Validations.Todo;
 using Todo.Domain.Commands.Requests.Account;
 using Todo.Domain.Commands.Requests.Auth;
+using Todo.Domain.Commands.Requests.Todo;
 
 namespace Todo.Application
 {
@@ -20,6 +22,9 @@ namespace Todo.Application
       services.AddScoped<IValidator<RefreshTokenCommand>, RefreshTokenCommandValidator>();
       services.AddScoped<IValidator<CreateAccountCommand>, CreateAccountCommandValidator>();
       services.AddScoped<IValidator<ChangeAccountPasswordCommand>, ChangeAccountPasswordCommandValidator>();
+      services.AddScoped<IValidator<CreateTaskCommand>, CreateTaskCommandValidator>();
+      services.AddScoped<IValidator<ChangeTaskCommand>, ChangeTaskCommandValidator>();
+      services.AddScoped<IValidator<DeleteTaskCommand>, DeleteTaskCommandValidator>();
 
       return services;
     }

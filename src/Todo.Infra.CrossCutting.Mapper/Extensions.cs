@@ -9,9 +9,9 @@ namespace Todo.Infra.CrossCutting.Mapper
   {
     public static IServiceCollection AddAutoMapperr(this IServiceCollection services)
     {
-      var mapConfig = new MapperConfiguration(mce =>
+      var mapConfig = new MapperConfiguration(cfg =>
       {
-        mce.AddMaps(typeof(DefaultProfile).Assembly);
+        cfg.AddMaps(typeof(DtoToResponse).Assembly);
       });
 
       mapConfig.AssertConfigurationIsValid();

@@ -4,9 +4,9 @@ using Todo.Domain.Dto.Auth;
 
 namespace Todo.Infra.CrossCutting.Mapper.Profiles
 {
-  public class DefaultProfile : Profile
+  public class DtoToResponse : Profile
   {
-    public DefaultProfile()
+    public DtoToResponse()
     {
       CreateMap<AccessTokenDto, LoginResponse>()
         .ForMember(x => x.IssuedUtc, opt => opt.Ignore());

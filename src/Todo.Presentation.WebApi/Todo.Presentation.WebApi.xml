@@ -29,5 +29,20 @@
             Geração de token baseado no refresh token
             </summary>
         </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.TodoController.Post(Todo.Domain.Commands.Requests.Todo.CreateTaskCommand,System.Threading.CancellationToken)">
+            <summary>
+            Criação de novas tasks
+            </summary>
+        </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.TodoController.Put(Todo.Domain.Commands.Requests.Todo.ChangeTaskCommand,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Alteração de tasks
+            </summary>
+        </member>
+        <member name="M:Todo.Presentation.WebApi.Controllers.TodoController.Put(Todo.Domain.Commands.Requests.Todo.DeleteTaskCommand,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete de tasks
+            </summary>
+        </member>
     </members>
 </doc>
