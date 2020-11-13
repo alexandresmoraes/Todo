@@ -73,6 +73,7 @@ namespace Todo.Infra.CrossCutting.Swagger
         c.DocumentTitle = API_NAME;        
         c.RoutePrefix = "dev";
         c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
+        c.DefaultModelsExpandDepth(-1);
       });
 
       return app;
